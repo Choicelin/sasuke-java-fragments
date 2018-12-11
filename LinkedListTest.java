@@ -47,10 +47,15 @@ public class LinkedListTest {
 
 
 /* 
-output:
+输出:
 
 [Amy, Bob, Carl, Doug, Erica, Frances, Gloria]
 [Bob, Frances]
 [Amy, Carl, Doug, Erica, Gloria]
 
+LinkedList底层是链表实现，对于随机访问并不支持，所以如果需要随机访问请使用ArrayList，但是LinkedList对
+插入与删除数据的操作十分高效，对于大量的数据倾向于使用LinkedList。
+
 */
+
+
