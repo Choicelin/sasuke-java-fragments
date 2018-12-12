@@ -39,7 +39,7 @@ public class Server {
                     if ("bye".equals(str)) {
                         socketOutput.println(str);
                     } else {
-                        socketOutput.print(str.length());
+                        socketOutput.println(str.length());
                     }
                 } while(flag);
 
