@@ -6,22 +6,23 @@ import java.net.Socket;
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket();
-        socket.setSoTimeout(3000);
+        socket.setSoTimeout(2000);
 
         socket.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 2000), 3000);
 
         try {
             startRun(socket);
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         socket.close();
     }
 
-    private static void startRun(Socket client) throws IOException {
+    private static void startRun(Socket client) {
         InputStream in = System.in;
         BufferedReader input = new BufferedReader(new InputStreamReader(in));
-        
+
         OutputStream outputStream = client.getOutputStream();
         PrintStream socketPrintStream = new PrintStream(outputStream);
 
@@ -31,16 +32,20 @@ public class Client {
 
         boolean flag = true;
         do {
-            String str = input.readLine();
-            socketPrintStream.println(str);
+            try {
+                String str = input.readLine();
+                socketPrintStream.println(str);
 
-            String echo = socketBufferedReader.readLine();
-            if ("bye".equalsIgnoreCase(echo)) {
-                flag = false;
-            } else {
-                System.out.println(echo);
+                String echo = socketBufferedReader.readLine();
+                if ("bye".equalsIgnoreCase(echo)) {
+                    flag = false;
+                } else {
+                    System.out.println(echo);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } while (flag); 
+        } while (flag);
 
         socketPrintStream.close();
         socketBufferedReader.close();

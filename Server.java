@@ -28,7 +28,7 @@ public class Server {
         @Override
         public void run() {
             super.run();
-
+            System.out.println("connected");
             try {
                 PrintStream socketOutput = new PrintStream(socket.getOutputStream());
                 BufferedReader socketInput = new BufferedReader(new InputStreamReader(
@@ -47,7 +47,7 @@ public class Server {
                 socketOutput.close();
             
             } catch(Exception e) {
-
+                e.printStackTrace();
             } finally {
                 try {
                     socket.close();
