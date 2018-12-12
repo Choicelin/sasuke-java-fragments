@@ -20,19 +20,19 @@ public class Client {
     }
 
     private static void startRun(Socket client) {
-        InputStream in = System.in;
-        BufferedReader input = new BufferedReader(new InputStreamReader(in));
+        try {
+            InputStream in = System.in;
+            BufferedReader input = new BufferedReader(new InputStreamReader(in));
 
-        OutputStream outputStream = client.getOutputStream();
-        PrintStream socketPrintStream = new PrintStream(outputStream);
+            OutputStream outputStream = client.getOutputStream();
+            PrintStream socketPrintStream = new PrintStream(outputStream);
 
-        InputStream inputStream = client.getInputStream();
-        BufferedReader socketBufferedReader = new BufferedReader(
-            new InputStreamReader(inputStream));
+            InputStream inputStream = client.getInputStream();
+            BufferedReader socketBufferedReader = new BufferedReader(
+                new InputStreamReader(inputStream));
 
-        boolean flag = true;
-        do {
-            try {
+            boolean flag = true;
+            do {
                 String str = input.readLine();
                 socketPrintStream.println(str);
 
@@ -42,12 +42,12 @@ public class Client {
                 } else {
                     System.out.println(echo);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } while (flag);
+            } while (flag);
 
-        socketPrintStream.close();
-        socketBufferedReader.close();
+            socketPrintStream.close();
+            socketBufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
