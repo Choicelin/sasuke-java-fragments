@@ -19,3 +19,7 @@ public class PriorityQueueTest {
         }
     }
 }
+
+/**
+ * 优先级队列会在移除元素的时候升序排序，同时移除最小的元素
+ */
